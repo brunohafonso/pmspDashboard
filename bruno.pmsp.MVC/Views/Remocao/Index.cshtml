@@ -1,0 +1,30 @@
+@model IEnumerable<bruno.pmsp.domain.Entities.Escola>
+
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>DRE</th>
+                <th>COD INEP</th>
+                <th>TIPO</th>
+                <th>NOME</th>
+                <th>ENDEREÇO</th>
+                <th>DISTANCIA</th>
+            </tr>
+        </thead>
+        <tbody  id="tabela-escolas">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.DRE</td>
+                    <td>@item.CodEol</td>
+                    <td>@item.Tipo</td>
+                    <td>@item.Nome</td>
+                    <td>@item.Logradouro, @item.Numero - @item.CEP</td>
+                    <td>@item.distancia</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

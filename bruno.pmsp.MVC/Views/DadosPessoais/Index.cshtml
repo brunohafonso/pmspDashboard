@@ -1,0 +1,306 @@
+@model bruno.pmsp.domain.Entities.Servidor 
+@{ ViewData["title"] = "Dados Pessoas"; }
+
+<main>
+    <div class="container-loading">
+        <div class="loading"></div>
+    </div>
+    <div class="py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="display-5">Mantenha seu cadastro atualizado!</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="py-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert"></div>
+                    <div class="card">
+                        <div class="card-header bg-primary">Dados Pessoais</div>
+                        <div class="card-body">
+                            <form id="dadosPessoais" method="POST">
+                                <input asp-for="Id" type="hidden">
+                                <input asp-for="IdLogin" type="hidden">
+                                <input asp-for="QtdAtualizacoes" type="hidden">
+                                <input asp-for="Telefones.Id" type="hidden">
+                                <input asp-for="Telefones.IdServidor" type="hidden">
+                                <input asp-for="Telefones.QtdAtualizacoes" type="hidden">
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="NomeCompleto">Nome Completo</label>
+                                        <input asp-for="NomeCompleto" type="text" class="form-control text-uppercase form-control-sm" placeholder="Nome Completo" required="required" disabled>
+                                        <span asp-validation-for="NomeCompleto"></span>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="RF">RF</label>
+                                        <input asp-for="RF" type="text" class="form-control text-uppercase form-control-sm" required="required" placeholder="Insira seu RF" disabled>
+                                        <span asp-validation-for="RF"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="EstadoCivil">Estado Civil</label>
+                                        <select asp-for="EstadoCivil" class="form-control text-uppercase form-control-sm" required="required" disabled>
+                                      <option value="">Selecione o Estado Civil</option>
+                                      <option value="Casado">Casado</option>
+                                      <option value="Desquitado">Desquitado</option>
+                                      <option value="Separado judic.">Separado judic.</option>
+                                      <option value="Solteiro">Solteiro</option>
+                                      <option value="União estável">União estável</option>
+                                      <option value="Viuvo">Viuvo</option>
+                                    </select>
+                                        <span asp-validation-for="EstadoCivil"></span>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="Genero">Genero</label>
+                                        <select asp-for="Genero" class="form-control text-uppercase form-control-sm" required="required" disabled>
+                                      <option value="">Selecione o Genero</option>
+                                      <option value="Masculino">Masculino</option>
+                                      <option value="Feminino">Feminino</option>
+                                      <option value="Não Informado">Não Quero Informar</option>
+                                    </select>
+                                        <span asp-validation-for="Genero"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="">Email</label>
+                                        <input asp-for="Email" type="email" class="form-control text-uppercase form-control-sm" placeholder="Insira seu email" disabled>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="DataNascimento">Data de Nascimento</label>
+                                        <input asp-for="DataNascimento" type="date" class="form-control text-uppercase form-control-sm" placeholder="Data de nascimento" disabled>
+                                        <span asp-validation-for="DataNascimento"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-4">
+                                        <label for="Telefones.TelefoneResidencial">Telefone Residencial</label>
+                                        <input asp-for="Telefones.TelefoneResidencial" type="text" class="form-control text-uppercase form-control-sm" placeholder="Insira seu telefone" disabled>
+                                        <span asp-validation-for="Telefones.TelefoneResidencial"></span>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="Telefones.Celular">Celular</label>
+                                        <input asp-for="Telefones.Celular" type="text" class="form-control text-uppercase form-control-sm" placeholder="Insira seu celular" disabled>
+                                        <span asp-validation-for="Telefones.Celular"></span>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="Telefones.WhatsApp">WhatsApp</label>
+                                        <input asp-for="Telefones.WhatsApp" type="text" class="form-control text-uppercase form-control-sm" placeholder="Insira seu WhatsApp" disabled>
+                                        <span asp-validation-for="Telefones.WhatsApp"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="Telefones.Recado">Telefone para Recado</label>
+                                        <input asp-for="Telefones.Recado" type="text" class="form-control text-uppercase form-control-sm" placeholder="Insira um telefone para recado" disabled>
+                                        <span asp-validation-for="Telefones.Recado"></span>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="Telefones.OutroTelefone">Outro Telefone para Recado</label>
+                                        <input asp-for="Telefones.OutroTelefone" type="text" class="form-control text-uppercase form-control-sm" placeholder="Insira um telefone para recado" disabled>
+                                        <span asp-validation-for="Telefones.OutroTelefone"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label for="PreferenciaContato">Preferência de meio de contato</label>
+                                        <select asp-for="PreferenciaContato" class="form-control text-uppercase form-control-sm" required="required" disabled>
+                                      <option value="">Selecione a preferencia do meio de contato</option>
+                                      <option value="Telefone Residencial">Telefone Residencial</option>
+                                      <option value="Celular">Celular</option>
+                                      <option value="Email">Email</option>
+                                      <option value="WhatsApp">WhatsApp</option>
+                                      <option value="todos">Todos os meios disponiveis no meu cadastro</option>
+                                      <option value="Não contactar">Não Quero que entrem em contato comigo.</option>
+                                    </select>
+                                        <span asp-validation-for="PreferenciaContato"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-12 text-right py-2">
+                                        <button id="salvarDadosPesssoais" type="submit" class="btn text-justify text-uppercase btn-outline-success btn-sm" disabled>SALVAR ALTERAÇÕES</button>
+                                        <button id="cancelarDadosPesssoais" class="btn text-justify text-uppercase btn-outline-danger btn-sm">CANCELAR ALTERAÇÕES</button>
+                                        <button id="editarDadosPessoais" class="btn text-justify text-uppercase btn-outline-info btn-sm">EDITAR DADOS PESSOAIS</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="py-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header bg-primary"> Endereço</div>
+                        <div class="card-body">
+                            <form id="endereco" method="POST">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="form-group col-md-8">
+                                                <input asp-for="Endereco.Id" type="hidden">
+                                                <input asp-for="Endereco.IdServidor" type="hidden">
+                                                <input asp-for="Endereco.QtdAtualizacoes" type="hidden">
+                                                <input asp-for="Endereco.Id" type="hidden">
+                                                <label for="Endereco.CEP" contenteditable="true">CEP</label>
+                                                <input asp-for="Endereco.CEP" type="text" class="form-control form-control-sm" placeholder="CEP" required="required" disabled>
+                                                <span asp-validation-for="Endereco.CEP"></span>
+                                            </div>
+                                            <div id="buscarCEP" class="form-group col-md-4">
+                                                <a class="btn btn-block btn-lg btn-success" href="#">Buscar Endereço</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-10">
+                                        <label for="Endereco.Logradouro">Logradouro</label>
+                                        <input asp-for="Endereco.Logradouro" type="text" class="form-control text-uppercase form-control-sm" placeholder="Insira o logradouro" required="required" disabled>
+                                        <span asp-validation-for="Endereco.Logradouro"></span>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="Endereco.Numero">Número</label>
+                                        <input asp-for="Endereco.Numero" type="number" class="form-control text-uppercase form-control-sm" placeholder="Número" required="required" disabled>
+                                        <span asp-validation-for="Endereco.Numero"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-8">
+                                        <label for="Endereco.Complemento">Complemento</label>
+                                        <input asp-for="Endereco.Complemento" type="text" class="form-control text-uppercase form-control-sm" placeholder="Insira o complemento" required="required" disabled>
+                                        <span asp-validation-for="Endereco.Complemento"></span>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="Endereco.Bairro">Bairro</label>
+                                        <input asp-for="Endereco.Bairro" type="text" class="form-control text-uppercase form-control-sm" placeholder="Insira o bairro" required="required" disabled>
+                                        <span asp-validation-for="Endereco.Bairro"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-10">
+                                        <label for="Endereco.Cidade">Cidade</label>
+                                        <input asp-for="Endereco.Cidade" type="text" class="form-control text-uppercase form-control-sm" placeholder="Insira a cidade" required="required" disabled>
+                                        <span asp-validation-for="Endereco.Cidade"></span>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="Endereco.Estado">Estado</label>
+                                        <input asp-for="Endereco.Estado" type="text" class="form-control text-uppercase form-control-sm" placeholder="Estado" required="required" disabled>
+                                        <span asp-validation-for="Endereco.Estado"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-12 text-right my-2">
+                                        <button id="salvarEndereco" type="submit" class="btn text-justify text-uppercase btn-outline-success btn-sm" disabled>SALVAR ALTERAÇÕES</button>
+                                        <button id="cancelarEndereco" class="btn text-justify text-uppercase btn-outline-danger btn-sm">CANCELAR ALTERAÇÕES</button>
+                                        <button id="editarEndereco" class="btn text-justify text-uppercase btn-outline-info btn-sm">EDITAR ENDEREÇO</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="py-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header bg-primary"> Dados Funcionais</div>
+                        <div class="card-body">
+                            @foreach (var vinculo in Model.Vinculos) {
+                            <form class="vinculo" method="POST">
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="@vinculo.Cargo">Cargo</label>
+                                        <input asp-for="@vinculo.Cargo" type="text" class="form-control text-uppercase form-control-sm" placeholder="Insira o Cargo" required="required" disabled>
+                                        <span asp-validation-for="@vinculo.Cargo"></span>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="@vinculo.Vinc">Vinculo</label>
+                                        <input asp-for="@vinculo.Vinc" type="number" class="form-control text-uppercase form-control-sm" placeholder="Vinculo" required="required" disabled>
+                                        <span asp-validation-for="@vinculo.Vinc"></span>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="@vinculo.Referencia">Referência</label>
+                                        <input asp-for="@vinculo.Referencia" type="text" class="form-control text-uppercase form-control-sm" placeholder="Referência" required="required" disabled>
+                                        <span asp-validation-for="@vinculo.Referencia"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="@vinculo.Jornada">Jornada</label>
+                                        <input asp-for="@vinculo.Jornada" type="text" class="form-control text-uppercase form-control-sm" placeholder="Insira a jornada" required="required" disabled>
+                                        <span asp-validation-for="@vinculo.Jornada"></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="@vinculo.StatusVinculo">Situação Funcional</label>
+                                        <select asp-for="@vinculo.StatusVinculo" class="form-control text-uppercase form-control-sm" required="required" disabled>
+                                      <option value="">Selecione a Situação Funcional</option>
+                                      <option value="Efetivo / Ativo">Efetivo / Ativo</option>
+                                      <option value="ADMITIDO/ ATIVO">ADMITIDO/ ATIVO</option>
+                                      <option value="ADMITIDO/ INATIVO">ADMITIDO/ INATIVO</option>
+                                      <option value="COMISSIONADO/ ATIVO">COMISSIONADO/ ATIVO</option>
+                                      <option value="COMISSIONADO/ INATIVO">COMISSIONADO/ INATIVO</option>
+                                      <option value="CONTRATADO">CONTRATADO</option>
+                                      <option value="DESIGNADO">DESIGNADO</option>
+                                      <option value="EFETIVO/ INATIVO">EFETIVO/ INATIVO</option>
+                                      <option value="ESTATUTÁRIO">ESTATUTÁRIO</option>
+                                      <option value="READAPTADO">READAPTADO</option>
+                                    </select>
+                                        <span asp-validation-for="@vinculo.StatusVinculo"></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="@vinculo.DataInicioVinculo">Data de Inicio do Vinculo</label>
+                                        <input asp-for="@vinculo.DataInicioVinculo" type="date" class="form-control text-uppercase form-control-sm" placeholder="Insira a jornada" required="required" disabled>
+                                        <span asp-validation-for="@vinculo.DataInicioVinculo"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="@vinculo.UnidadeExercicio">Unidade de Exercício</label>
+                                        <input asp-for="@vinculo.UnidadeExercicio" type="text" class="form-control text-uppercase form-control-sm" placeholder="Insira a Unidade de Exercício" required="required" disabled>
+                                        <span asp-validation-for="@vinculo.UnidadeExercicio"></span>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="@vinculo.UnidadeLotacao">Unidade de Lotação</label>
+                                        <input asp-for="@vinculo.UnidadeLotacao" type="text" class="form-control text-uppercase form-control-sm" placeholder="Insira a unidade de lotação" required="required" disabled>
+                                        <span asp-validation-for="@vinculo.UnidadeLotacao"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label for="@vinculo.DRE">Diretoria Regional de Educação (DRE)</label>
+                                        <input asp-for="@vinculo.DRE" type="text" class="form-control text-uppercase form-control-sm" placeholder="Insira a diretoria regional de educação" required="required" disabled>
+                                        <span asp-validation-for="@vinculo.DRE"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 text-right m-1">
+                                        <a href="#" class="btn m-1 btn-outline-info btn-sm">EDITAR VINCULO</a>
+                                        <a href="#" class="btn m-1 btn-outline-success btn-sm">INSERIR NOVO VINCULO</a>
+                                        <a href="#" class="btn mx-1 btn-outline-danger btn-sm">EXCLUIR VINCULO</a>
+                                    </div>
+                                </div>
+                            </form>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
